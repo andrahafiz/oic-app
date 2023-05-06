@@ -60,18 +60,10 @@
             </ul>
         </li>
         <li>
-            <a href="#ui-elements" data-toggle="collapse" aria-expanded="false">
+            <a href="{{ route('kendaraan.index') }}">
                 <span class="link-title">Kendaraan</span>
-                <i class="mdi mdi-bullseye link-icon"></i>
+                <i class="mdi mdi-gauge link-icon"></i>
             </a>
-            <ul class="collapse navigation-submenu" id="ui-elements">
-                <li>
-                    <a href="pages/ui-components/buttons.html">Aset Mobil</a>
-                </li>
-                <li>
-                    <a href="pages/ui-components/tables.html">Aset Motor</a>
-                </li>
-            </ul>
         </li>
         <li>
             <a href="pages/forms/form-elements.html">

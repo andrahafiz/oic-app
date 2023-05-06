@@ -27,13 +27,44 @@
                                 @csrf
                                 <div class="form-group row showcase_row_area">
                                     <div class="col-md-2 showcase_text_area">
-                                        <label for="inp_name">Nama</label>
+                                        <label for="inp_name">Nama Kendaraan *</label>
                                     </div>
                                     <div class="col-md-8 showcase_content_area">
                                         <input type="text" class="form-control  @error('inp_name') is-invalid @enderror"
-                                            id="inp_name" name="inp_name" placeholder="Masukan nama anda"
+                                            id="inp_name" name="inp_name" placeholder="Masukan nama kendaraan"
                                             value="{{ old('inp_name') }}">
                                         @error('inp_name')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row showcase_row_area">
+                                    <div class="col-md-2 showcase_text_area">
+                                        <label for="inp_inv_card">Inventory Card</label>
+                                    </div>
+                                    <div class="col-md-8 showcase_content_area">
+                                        <input type="text"
+                                            class="form-control  @error('inp_inv_card') is-invalid @enderror"
+                                            id="inp_inv_card" name="inp_inv_card" placeholder="Masukan inventory card">
+                                        @error('inp_inv_card')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row showcase_row_area">
+                                    <div class="col-md-2 showcase_text_area">
+                                        <label for="inp_project">Project *</label>
+                                    </div>
+                                    <div class="col-md-8 showcase_content_area">
+                                        <input type="text"
+                                            class="form-control  @error('inp_project') is-invalid @enderror"
+                                            id="inp_project" name="inp_project" placeholder="Masukan data project"
+                                            value="{{ old('inp_project') }}">
+                                        @error('inp_project')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -56,37 +87,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="form-group row showcase_row_area">
-                                    <div class="col-md-2 showcase_text_area">
-                                        <label for="inp_project">Project</label>
-                                    </div>
-                                    <div class="col-md-8 showcase_content_area">
-                                        <input type="text"
-                                            class="form-control  @error('inp_project') is-invalid @enderror"
-                                            id="inp_project" name="inp_project" placeholder="Masukan data project"
-                                            value="{{ old('inp_project') }}">
-                                        @error('inp_project')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row showcase_row_area">
-                                    <div class="col-md-2 showcase_text_area">
-                                        <label for="inp_barang">Barang</label>
-                                    </div>
-                                    <div class="col-md-8 showcase_content_area">
-                                        <input type="text" class="form-control @error('inp_barang') is-invalid @enderror"
-                                            id="inp_barang" name="inp_barang" placeholder="Masukan data barang"
-                                            value="{{ old('inp_barang') }}">
-                                        @error('inp_barang')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
+
                                 <div class="form-group row showcase_row_area">
                                     <div class="col-md-2 showcase_text_area">
                                         <label for="inp_harga">Harga</label>
@@ -104,7 +105,7 @@
                                 </div>
                                 <div class="form-group row showcase_row_area">
                                     <div class="col-md-2 showcase_text_area">
-                                        <label for="inp_lokasi">Lokasi</label>
+                                        <label for="inp_lokasi">Lokasi *</label>
                                     </div>
                                     <div class="col-md-8 showcase_content_area">
                                         <input type="text" class="form-control @error('inp_lokasi') is-invalid @enderror"
@@ -119,7 +120,23 @@
                                 </div>
                                 <div class="form-group row showcase_row_area">
                                     <div class="col-md-2 showcase_text_area">
-                                        <label for="inp_kondisi">Kondisi</label>
+                                        <label for="inp_pemakai">Pemakai</label>
+                                    </div>
+                                    <div class="col-md-8 showcase_content_area">
+                                        <input type="text"
+                                            class="form-control @error('inp_pemakai') is-invalid @enderror" id="inp_pemakai"
+                                            name="inp_pemakai" placeholder="Masukan data pemakai kendaraan"
+                                            value="{{ old('inp_pemakai') }}">
+                                        @error('inp_pemakai')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row showcase_row_area">
+                                    <div class="col-md-2 showcase_text_area">
+                                        <label for="inp_kondisi">Kondisi *</label>
                                     </div>
                                     <div class="col-md-8 showcase_content_area">
                                         <select class="custom-select @error('inp_kondisi') is-invalid @enderror"
@@ -127,6 +144,8 @@
                                             <option selected="selected">-- Pilih --</option>
                                             <option value="Baik" @selected(old('inp_kondisi') == 'Baik')>Baik</option>
                                             <option value="Rusak" @selected(old('inp_kondisi') == 'Rusak')>Rusak</option>
+                                            <option value="Dijual" @selected(old('inp_kondisi') == 'Dijual')>Dijual</option>
+                                            <option value="Hilang" @selected(old('inp_kondisi') == 'Hilang')>Hilang</option>
                                         </select>
                                         @error('inp_kondisi')
                                             <div class="invalid-feedback">
@@ -135,11 +154,43 @@
                                         @enderror
                                     </div>
                                 </div>
-
+                                <div class="form-group row showcase_row_area">
+                                    <div class="col-md-2 showcase_text_area">
+                                        <label for="inp_tglpeminjaman">Tanggal Peminjaman</label>
+                                    </div>
+                                    <div class="col-md-8 showcase_content_area">
+                                        <input type="date"
+                                            class="form-control  @error('inp_tglpeminjaman') is-invalid @enderror"
+                                            id="inp_tglpeminjaman" name="inp_tglpeminjaman"
+                                            value="{{ old('inp_tglpeminjaman') }}">
+                                        @error('inp_tglpeminjaman')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row showcase_row_area">
+                                    <div class="col-md-2 showcase_text_area">
+                                        <label for="inp_deskripsi">Deskripsi</label>
+                                    </div>
+                                    <div class="col-md-8 showcase_content_area">
+                                        <textarea style="resize: auto" rows="5" class="form-control @error('inp_deskripsi') is-invalid @enderror"
+                                            id="inp_deskripsi" name="inp_deskripsi" value="{{ old('inp_deskripsi') }}"
+                                            placeholder="Tambahkan deskripsi jika diperlukan&#10;Jika adan mengisi inputan tanggal peminjaman, berikan informasi tentang peminjamn dengan format <Peminjam : nama_peminjam> contoh : 'Peminjam : Budi'"></textarea>
+                                        @error('inp_deskripsi')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="form-group row showcase_row_area">
                                     <div class="col-md-2 showcase_text_area">
                                     </div>
                                     <div class="col-md-8 showcase_content_area">
+                                        <p class="text-muted"><small> Inputan bertanda * harus di isi </small></p>
+
                                         <button type="submit" class="btn btn-sm btn-primary">Tambah</button>
                                     </div>
                                 </div>

@@ -13,7 +13,7 @@ class KendaraanUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class KendaraanUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'inp_name'          => ['required', 'string'],
+            'inp_inv_card'      => ['sometimes', 'nullable', 'string'],
+            'inp_project'       => ['required', 'string'],
+            'inp_lokasi'        => ['required', 'string'],
+            'inp_harga'         => ['required_with:inp_tglpembelian'],
+            'inp_deskripsi'     => ['sometimes', 'nullable', 'string'],
+            'inp_pemakai'     => ['sometimes', 'nullable', 'string'],
+            'inp_kondisi'       => ['required', 'in:Baik,Rusak,Dijual,Hilang'],
+            'inp_tglpeminjaman' => ['sometimes', 'nullable', 'date'],
+            'inp_tglpembelian' => ['sometimes', 'nullable', 'date'],
         ];
     }
 }

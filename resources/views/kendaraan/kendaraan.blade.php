@@ -27,7 +27,7 @@
                 <div class="grid">
                     <div class="grid-header">
                         <p class="d-inline start">Kendaraan</p>
-                        <a href="{{ route('tanah.create') }}">
+                        <a href="{{ route('kendaraan.create') }}">
                             <button type="button" class="d-inline btn btn-outline-success mb-3 float-end">
                                 Add Document
                             </button>
@@ -40,38 +40,46 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Tanggal Pembelian</th>
+                                        <th>Inventory Card</th>
                                         <th>Nama</th>
                                         <th>Project</th>
-                                        <th>Barang</th>
                                         <th>Harga</th>
                                         <th>Lokasi</th>
                                         <th>Kondisi</th>
+                                        <th>Tanggal Peminjaman</th>
+                                        <th>Pemakai</th>
+                                        <th>Deskripsi</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @foreach ($kendaraan as $item)
+                                <tbody class="text-center">
+                                    @foreach ($kendaraans as $item)
                                         <tr>
-                                            <td>{{ $kendaraan->firstItem() + $loop->index }}</td>
-                                            <td>{{ $item->date_buy?->isoFormat('dddd, D MMMM Y') }}</td>
+                                            <td>{{ $kendaraans->firstItem() + $loop->index }}</td>
+                                            <td>{{ $item->buy_date?->isoFormat('dddd, D MMMM Y') ?? '-' }}</td>
+                                            <td>{{ $item->inventory_card ?? '-' }}</td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->project }}</td>
-                                            <td>{{ $item->thing }}</td>
-                                            <td>{{ $item->price }}</td>
+                                            <td>{{ Helper::formatRupiah($item->price) }}</td>
                                             <td>{{ $item->location }}</td>
                                             <td>
                                                 @if ($item->condition == 'Baik')
                                                     <label class="badge badge-success">{{ $item->condition }}</label>
-                                                @else
+                                                @elseif($item->condition == 'Rusak')
                                                     <label class="badge badge-danger">{{ $item->condition }}</label>
+                                                @else
+                                                    <label class="badge badge-info">{{ $item->condition }}</label>
                                                 @endif
                                             </td>
+                                            <td>{{ $item->loan_date?->isoFormat('dddd, D MMMM Y') ?? '-' }}</td>
+                                            <td>{{ $item->user ?? '-' }}</td>
+                                            <td>{{ $item->description ?? '-' }}</td>
                                             <td>
-                                                <a href="{{ route('tanah.edit', $item->id) }}">
+                                                <a href="{{ route('kendaraan.edit', $item->id) }}">
                                                     <button class="btn btn-primary btn-xs has-icon"><i
                                                             class="mdi mdi-pencil mr-0"></i></button>
                                                 </a>
-                                                <form method="POST" action="{{ route('tanah.destroy', $item->id) }}"
+                                                <form method="POST" action="{{ route('kendaraan.destroy', $item->id) }}"
                                                     class="d-inline">
                                                     @csrf
                                                     {{ method_field('delete') }}
@@ -87,7 +95,7 @@
                     </div>
                 </div>
                 <div class="float-end">
-                    {!! $kendaraan->links() !!}
+                    {!! $kendaraans->links() !!}
                 </div>
             </div>
             <!-- content viewport ends -->

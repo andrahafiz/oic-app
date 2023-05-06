@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KendaraanController;
 use App\Http\Controllers\TanahController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,5 +34,15 @@ Route::controller(TanahController::class)->group(
         Route::delete('/tanah/{tanah}',  'destroy')->name('tanah.destroy');
         Route::get('/tanah/{tanah}/edit',  'edit')->name('tanah.edit');
         Route::put('/tanah/{tanah}/edit',  'update')->name('tanah.update');
+    }
+);
+Route::controller(KendaraanController::class)->group(
+    function () {
+        Route::get('/kendaraan',  'index')->name('kendaraan.index');
+        Route::get('/kendaraan/tambah',  'create')->name('kendaraan.create');
+        Route::post('/kendaraan/store',  'store')->name('kendaraan.store');
+        Route::delete('/kendaraan/{kendaraan}',  'destroy')->name('kendaraan.destroy');
+        Route::get('/kendaraan/{kendaraan}/edit',  'edit')->name('kendaraan.edit');
+        Route::put('/kendaraan/{kendaraan}/edit',  'update')->name('kendaraan.update');
     }
 );
