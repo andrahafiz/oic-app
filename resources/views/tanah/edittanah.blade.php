@@ -50,8 +50,24 @@
                                         <input type="date"
                                             class="form-control  @error('inp_tglpembelian') is-invalid @enderror"
                                             id="inp_tglpembelian" name="inp_tglpembelian"
-                                            value="{{ old('inp_tglpembelian') ?? $tanah->date_buy->format('Y-m-d') }}">
+                                            value="{{ old('inp_tglpembelian') ?? $tanah->date_buy?->format('Y-m-d') }}">
                                         @error('inp_tglpembelian')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row showcase_row_area">
+                                    <div class="col-md-2 showcase_text_area">
+                                        <label for="inp_inv_card">Inventory Card</label>
+                                    </div>
+                                    <div class="col-md-8 showcase_content_area">
+                                        <input type="text"
+                                            class="form-control  @error('inp_inv_card') is-invalid @enderror"
+                                            id="inp_inv_card" name="inp_inv_card" placeholder="Masukan inventory card"
+                                            value="{{ old('inp_inv_card') ?? $tanah->inventory_card }}">
+                                        @error('inp_inv_card')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>

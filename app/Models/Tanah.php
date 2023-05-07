@@ -12,7 +12,7 @@ class Tanah extends Model
     protected $table = "tanahs";
     protected $primaryKey = 'id';
     protected $fillable = [
-        'name', 'project', 'thing', 'price', 'location', 'condition', 'date_buy'
+        'name', 'inventory_card', 'project', 'thing', 'price', 'location', 'condition', 'date_buy'
     ];
     protected $dates = [
         'date_buy'

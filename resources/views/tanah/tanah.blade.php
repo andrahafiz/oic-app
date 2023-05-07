@@ -41,6 +41,7 @@
                                         <th>No</th>
                                         <th>Tanggal Pembelian</th>
                                         <th>Nama</th>
+                                        <th>Inventory Card</th>
                                         <th>Project</th>
                                         <th>Harga</th>
                                         <th>Lokasi</th>
@@ -48,14 +49,15 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-center">
                                     @foreach ($tanahs as $item)
                                         <tr>
                                             <td>{{ $tanahs->firstItem() + $loop->index }}</td>
-                                            <td>{{ $item->date_buy?->isoFormat('dddd, D MMMM Y') }}</td>
+                                            <td>{{ $item->date_buy?->isoFormat('dddd, D MMMM Y') ?? '-' }}</td>
                                             <td>{{ $item->name }}</td>
+                                            <td>{{ $item->inventory_card ?? '-' }}</td>
                                             <td>{{ $item->projects->name }}</td>
-                                            <td>{{ $item->price }}</td>
+                                            <td>{{ Helper::formatRupiah($item->price) }}</td>
                                             <td>{{ $item->location }}</td>
                                             <td>
                                                 @if ($item->condition == 'Baik')

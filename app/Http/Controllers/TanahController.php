@@ -41,11 +41,12 @@ class TanahController extends Controller
     public function store(TanahStoreRequest $request)
     {
         $input = $request->safe([
-            'inp_name', 'inp_project',  'inp_harga', 'inp_lokasi', 'inp_kondisi', 'inp_tglpembelian'
+            'inp_name', 'inp_project', 'inp_inv_card', 'inp_harga', 'inp_lokasi', 'inp_kondisi', 'inp_tglpembelian'
         ]);
 
         $add = Tanah::create([
             'name' => $input['inp_name'],
+            'inventory_card' => $input['inp_inv_card'],
             'project' => $input['inp_project'],
             'location' => $input['inp_lokasi'],
             'price' => $input['inp_harga'],
@@ -78,10 +79,11 @@ class TanahController extends Controller
     public function update(TanahUpdateRequest $request, Tanah $tanah)
     {
         $input = $request->safe([
-            'inp_name', 'inp_project',  'inp_harga', 'inp_lokasi', 'inp_kondisi', 'inp_tglpembelian'
+            'inp_name', 'inp_project', 'inp_inv_card', 'inp_harga', 'inp_lokasi', 'inp_kondisi', 'inp_tglpembelian'
         ]);
         $update = $tanah->update([
             'name' => $input['inp_name'],
+            'inventory_card' => $input['inp_inv_card'],
             'project' => $input['inp_project'],
             'location' => $input['inp_lokasi'],
             'price' => $input['inp_harga'],

@@ -27,13 +27,28 @@
                                 @csrf
                                 <div class="form-group row showcase_row_area">
                                     <div class="col-md-2 showcase_text_area">
-                                        <label for="inp_name">Nama</label>
+                                        <label for="inp_name">Nama *</label>
                                     </div>
                                     <div class="col-md-8 showcase_content_area">
                                         <input type="text" class="form-control  @error('inp_name') is-invalid @enderror"
                                             id="inp_name" name="inp_name" placeholder="Masukan nama anda"
                                             value="{{ old('inp_name') }}">
                                         @error('inp_name')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row showcase_row_area">
+                                    <div class="col-md-2 showcase_text_area">
+                                        <label for="inp_inv_card">Inventory Card</label>
+                                    </div>
+                                    <div class="col-md-8 showcase_content_area">
+                                        <input type="text"
+                                            class="form-control  @error('inp_inv_card') is-invalid @enderror"
+                                            id="inp_inv_card" name="inp_inv_card" placeholder="Masukan inventory card">
+                                        @error('inp_inv_card')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -58,7 +73,7 @@
                                 </div>
                                 <div class="form-group row showcase_row_area">
                                     <div class="col-md-2 showcase_text_area">
-                                        <label for="inp_project">Project</label>
+                                        <label for="inp_project">Project *</label>
                                     </div>
                                     <div class="col-md-8 showcase_content_area">
                                         <select class="custom-select @error('inp_project') is-invalid @enderror"
@@ -94,7 +109,7 @@
                                 </div>
                                 <div class="form-group row showcase_row_area">
                                     <div class="col-md-2 showcase_text_area">
-                                        <label for="inp_lokasi">Lokasi</label>
+                                        <label for="inp_lokasi">Lokasi *</label>
                                     </div>
                                     <div class="col-md-8 showcase_content_area">
                                         <input type="text" class="form-control @error('inp_lokasi') is-invalid @enderror"
@@ -109,7 +124,7 @@
                                 </div>
                                 <div class="form-group row showcase_row_area">
                                     <div class="col-md-2 showcase_text_area">
-                                        <label for="inp_kondisi">Kondisi</label>
+                                        <label for="inp_kondisi">Kondisi *</label>
                                     </div>
                                     <div class="col-md-8 showcase_content_area">
                                         <select class="custom-select @error('inp_kondisi') is-invalid @enderror"

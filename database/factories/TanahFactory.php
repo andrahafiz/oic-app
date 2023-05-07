@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,8 @@ class TanahFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'project' => 'PROJECT ' . $this->faker->name(),
+            'inventory_card' => $this->faker->word(),
+            'project' => Project::factory()->create()->id,
             'price' => $this->faker->randomNumber(),
             'location' => $this->faker->word(),
             'date_buy' => $this->faker->dateTimeBetween('-1 month', '+1 month'),

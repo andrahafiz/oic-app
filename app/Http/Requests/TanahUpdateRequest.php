@@ -24,13 +24,13 @@ class TanahUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'inp_name'      => ['sometimes', 'string'],
-            'inp_project'   => ['sometimes', 'string'],
-            'inp_barang'    => ['sometimes', 'string'],
-            'inp_harga'     => ['sometimes', 'integer'],
-            'inp_lokasi'    => ['sometimes', 'string'],
-            'inp_kondisi'   => ['sometimes', 'in:Baik,Rusak'],
-            'inp_tglpembelian'   => ['sometimes', 'string'],
+            'inp_name'          => ['required', 'string'],
+            'inp_inv_card'      => ['sometimes', 'nullable', 'string'],
+            'inp_project'       => ['required', 'exists:projects,id'],
+            'inp_harga'         => ['sometimes', 'nullable', 'integer'],
+            'inp_lokasi'        => ['required', 'string'],
+            'inp_kondisi'       => ['required', 'in:Baik,Rusak'],
+            'inp_tglpembelian'  => ['sometimes', 'nullable', 'date'],
         ];
     }
 }

@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('tanahs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('inventory_card')->nullable();
             $table->foreignId('project');
-            $table->integer('price');
+            $table->integer('price')->default(0)->nullable();;
             $table->string('location');
-            $table->timestamp('date_buy');
+            $table->timestamp('date_buy')->nullable();
             $table->enum('condition', ['Baik', 'Rusak']);
             $table->timestamps();
             $table->softDeletes();
