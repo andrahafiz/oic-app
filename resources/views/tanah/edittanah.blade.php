@@ -63,26 +63,16 @@
                                         <label for="inp_project">Project</label>
                                     </div>
                                     <div class="col-md-8 showcase_content_area">
-                                        <input type="text"
-                                            class="form-control  @error('inp_project') is-invalid @enderror"
-                                            id="inp_project" name="inp_project" placeholder="Masukan data project"
-                                            value="{{ old('inp_project') ?? $tanah->project }}">
+                                        <select class="custom-select @error('inp_project') is-invalid @enderror"
+                                            name="inp_project">
+                                            <option value="">-- Pilih Project --</option>
+                                            @foreach ($projects as $project)
+                                                <option value="{{ $project->id }}" @selected($tanah->project == $project->id)>
+                                                    {{ $project->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                         @error('inp_project')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row showcase_row_area">
-                                    <div class="col-md-2 showcase_text_area">
-                                        <label for="inp_barang">Barang</label>
-                                    </div>
-                                    <div class="col-md-8 showcase_content_area">
-                                        <input type="text" class="form-control @error('inp_barang') is-invalid @enderror"
-                                            id="inp_barang" name="inp_barang" placeholder="Masukan data barang"
-                                            value="{{ old('inp_barang') ?? $tanah->thing }}">
-                                        @error('inp_barang')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>

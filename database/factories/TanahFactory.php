@@ -19,7 +19,6 @@ class TanahFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'project' => 'PROJECT ' . $this->faker->name(),
-            'thing' => $this->faker->word(),
             'price' => $this->faker->randomNumber(),
             'location' => $this->faker->word(),
             'date_buy' => $this->faker->dateTimeBetween('-1 month', '+1 month'),

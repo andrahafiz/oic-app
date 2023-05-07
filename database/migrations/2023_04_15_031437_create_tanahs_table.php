@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('tanahs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('project');
-            $table->string('thing');
+            $table->foreignId('project');
             $table->integer('price');
             $table->string('location');
             $table->timestamp('date_buy');

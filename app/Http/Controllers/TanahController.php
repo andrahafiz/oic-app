@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TanahStoreRequest;
 use App\Http\Requests\TanahUpdateRequest;
+use App\Models\Project;
 use App\Models\Tanah;
 use Illuminate\Http\Request;
 
@@ -27,8 +28,8 @@ class TanahController extends Controller
      */
     public function create()
     {
-        //
-        return view('tanah.addtanah');
+        $projects = Project::get();
+        return view('tanah.addtanah', compact('projects'));
     }
 
     /**
@@ -40,13 +41,12 @@ class TanahController extends Controller
     public function store(TanahStoreRequest $request)
     {
         $input = $request->safe([
-            'inp_name', 'inp_project', 'inp_barang', 'inp_harga', 'inp_lokasi', 'inp_kondisi', 'inp_tglpembelian'
+            'inp_name', 'inp_project',  'inp_harga', 'inp_lokasi', 'inp_kondisi', 'inp_tglpembelian'
         ]);
 
         $add = Tanah::create([
             'name' => $input['inp_name'],
             'project' => $input['inp_project'],
-            'thing' => $input['inp_barang'],
             'location' => $input['inp_lokasi'],
             'price' => $input['inp_harga'],
             'condition' => $input['inp_kondisi'],
@@ -64,7 +64,8 @@ class TanahController extends Controller
      */
     public function edit(Tanah $tanah)
     {
-        return view('tanah.edittanah', compact('tanah'));
+        $projects = Project::get();
+        return view('tanah.edittanah', compact('tanah', 'projects'));
     }
 
     /**
@@ -77,12 +78,11 @@ class TanahController extends Controller
     public function update(TanahUpdateRequest $request, Tanah $tanah)
     {
         $input = $request->safe([
-            'inp_name', 'inp_project', 'inp_barang', 'inp_harga', 'inp_lokasi', 'inp_kondisi', 'inp_tglpembelian'
+            'inp_name', 'inp_project',  'inp_harga', 'inp_lokasi', 'inp_kondisi', 'inp_tglpembelian'
         ]);
         $update = $tanah->update([
             'name' => $input['inp_name'],
             'project' => $input['inp_project'],
-            'thing' => $input['inp_barang'],
             'location' => $input['inp_lokasi'],
             'price' => $input['inp_harga'],
             'condition' => $input['inp_kondisi'],

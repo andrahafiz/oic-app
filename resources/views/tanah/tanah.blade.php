@@ -42,7 +42,6 @@
                                         <th>Tanggal Pembelian</th>
                                         <th>Nama</th>
                                         <th>Project</th>
-                                        <th>Barang</th>
                                         <th>Harga</th>
                                         <th>Lokasi</th>
                                         <th>Kondisi</th>
@@ -55,8 +54,7 @@
                                             <td>{{ $tanahs->firstItem() + $loop->index }}</td>
                                             <td>{{ $item->date_buy?->isoFormat('dddd, D MMMM Y') }}</td>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->project }}</td>
-                                            <td>{{ $item->thing }}</td>
+                                            <td>{{ $item->projects->name }}</td>
                                             <td>{{ $item->price }}</td>
                                             <td>{{ $item->location }}</td>
                                             <td>

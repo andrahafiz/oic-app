@@ -17,4 +17,9 @@ class Tanah extends Model
     protected $dates = [
         'date_buy'
     ];
+
+    public function projects()
+    {
+        return $this->belongsTo(Project::class, 'project', 'id');
+    }
 }
