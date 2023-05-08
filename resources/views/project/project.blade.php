@@ -53,7 +53,6 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                    {{ count($projects) }}
                                     @if (count($projects) === 0)
                                         <tr>
                                             <td colspan="12"><strong>Data tidak ditemukan</strong></td>
