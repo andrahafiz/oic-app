@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BuildController;
 use App\Http\Controllers\TanahController;
 use App\Http\Controllers\ProyekController;
 use App\Http\Controllers\ProjectController;
@@ -52,6 +53,16 @@ Route::middleware(['web', 'auth'])->group(
                 Route::delete('/kendaraan/{kendaraan}',  'destroy')->name('kendaraan.destroy');
                 Route::get('/kendaraan/{kendaraan}/edit',  'edit')->name('kendaraan.edit');
                 Route::put('/kendaraan/{kendaraan}/edit',  'update')->name('kendaraan.update');
+            }
+        );
+        Route::controller(BuildController::class)->group(
+            function () {
+                Route::get('/bangunan',  'index')->name('build.index');
+                Route::get('/bangunan/tambah',  'create')->name('build.create');
+                Route::post('/bangunan/store',  'store')->name('build.store');
+                Route::delete('/bangunan/{build}',  'destroy')->name('build.destroy');
+                Route::get('/bangunan/{build}/edit',  'edit')->name('build.edit');
+                Route::put('/bangunan/{build}/edit',  'update')->name('build.update');
             }
         );
         Route::controller(ProyekController::class)->group(

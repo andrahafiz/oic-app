@@ -24,7 +24,7 @@
             </a>
         </li>
         <li>
-            <a href="./pages/bangunan/bangunan.html">
+            <a href="{{ route('build.index') }}">
                 <span class="link-title">Bangunan</span>
                 <i class="mdi mdi-gauge link-icon"></i>
             </a>
