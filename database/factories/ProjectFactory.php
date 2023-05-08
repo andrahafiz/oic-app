@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Project;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,9 +19,12 @@ class ProjectFactory extends Factory
 
     public function definition()
     {
+        $project = ['US_EMBYSY', 'Lestari', 'SOS', 'LU SH', 'TFCH', 'Arcus', 'Wish Indo'];
+        $selected = $this->faker->unique()->randomElement($project);
         return [
             //
-            'name' => $this->faker->randomElement(['US_EMBYSY'])
+            'name' => $selected,
+            'slug' => Str::slug($selected)
         ];
     }
 }
