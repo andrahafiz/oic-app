@@ -26,7 +26,7 @@
         <li>
             <a href="{{ route('build.index') }}">
                 <span class="link-title">Bangunan</span>
-                <i class="mdi mdi-gauge link-icon"></i>
+                <i class="mdi mdi-hospital-building link-icon"></i>
             </a>
         </li>
         <li>
@@ -46,11 +46,11 @@
         <li>
             <a href="{{ route('kendaraan.index') }}">
                 <span class="link-title">Kendaraan</span>
-                <i class="mdi mdi-gauge link-icon"></i>
+                <i class="mdi mdi-car link-icon"></i>
             </a>
         </li>
         <li>
-            <a href="pages/forms/form-elements.html">
+            <a href="{{ route('office.index') }}">
                 <span class="link-title">Office</span>
                 <i class="mdi mdi-clipboard-outline link-icon"></i>
             </a>

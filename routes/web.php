@@ -8,6 +8,7 @@ use App\Http\Controllers\ProyekController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KendaraanController;
+use App\Http\Controllers\OfficeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,16 @@ Route::middleware(['web', 'auth'])->group(
                 Route::delete('/bangunan/{build}',  'destroy')->name('build.destroy');
                 Route::get('/bangunan/{build}/edit',  'edit')->name('build.edit');
                 Route::put('/bangunan/{build}/edit',  'update')->name('build.update');
+            }
+        );
+        Route::controller(OfficeController::class)->group(
+            function () {
+                Route::get('/office',  'index')->name('office.index');
+                Route::get('/office/tambah',  'create')->name('office.create');
+                Route::post('/office/store',  'store')->name('office.store');
+                Route::delete('/office/{office}',  'destroy')->name('office.destroy');
+                Route::get('/office/{office}/edit',  'edit')->name('office.edit');
+                Route::put('/office/{office}/edit',  'update')->name('office.update');
             }
         );
         Route::controller(ProyekController::class)->group(
