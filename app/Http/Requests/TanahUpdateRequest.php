@@ -25,6 +25,7 @@ class TanahUpdateRequest extends FormRequest
     {
         return [
             'inp_name'          => ['required', 'string'],
+            'inp_pemakai'          => ['sometimes', 'string'],
             'inp_inv_card'      => ['sometimes', 'nullable', 'string'],
             'inp_project'       => ['required', 'exists:projects,id'],
             'inp_harga'         => ['sometimes', 'nullable', 'integer'],

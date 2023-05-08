@@ -127,14 +127,32 @@
                                 </div>
                                 <div class="form-group row showcase_row_area">
                                     <div class="col-md-2 showcase_text_area">
-                                        <label for="inp_kondisi">Kondisi</label>
+                                        <label for="inp_pemakai">Pemakai</label>
+                                    </div>
+                                    <div class="col-md-8 showcase_content_area">
+                                        <input type="text"
+                                            class="form-control @error('inp_pemakai') is-invalid @enderror" id="inp_pemakai"
+                                            name="inp_pemakai" placeholder="Masukan data pemakai kendaraan"
+                                            value="{{ old('inp_pemakai') ?? $tanah->user }}">
+                                        @error('inp_pemakai')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row showcase_row_area">
+                                    <div class="col-md-2 showcase_text_area">
+                                        <label for="inp_kondisi">Kondisi *</label>
                                     </div>
                                     <div class="col-md-8 showcase_content_area">
                                         <select class="custom-select @error('inp_kondisi') is-invalid @enderror"
                                             name="inp_kondisi">
                                             <option selected="selected">-- Pilih --</option>
-                                            <option value="Baik" @selected(old('inp_kondisi') ?? $tanah->condition == 'Baik')>Baik</option>
-                                            <option value="Rusak" @selected(old('inp_kondisi') ?? $tanah->condition == 'Rusak')>Rusak</option>
+                                            <option value="Baik" @selected($tanah->condition == 'Baik')>Baik</option>
+                                            <option value="Rusak" @selected($tanah->condition == 'Rusak')>Rusak</option>
+                                            <option value="Dijual" @selected($tanah->condition == 'Dijual')>Dijual</option>
+                                            <option value="Hilang" @selected($tanah->condition == 'Hilang')>Hilang</option>
                                         </select>
                                         @error('inp_kondisi')
                                             <div class="invalid-feedback">
@@ -143,7 +161,6 @@
                                         @enderror
                                     </div>
                                 </div>
-
                                 <div class="form-group row showcase_row_area">
                                     <div class="col-md-2 showcase_text_area">
                                     </div>

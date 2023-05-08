@@ -47,7 +47,8 @@
                                     <div class="col-md-8 showcase_content_area">
                                         <input type="text"
                                             class="form-control  @error('inp_inv_card') is-invalid @enderror"
-                                            id="inp_inv_card" name="inp_inv_card" placeholder="Masukan inventory card">
+                                            id="inp_inv_card" name="inp_inv_card" placeholder="Masukan inventory card"
+                                            value="{{ old('inp_inv_card') }}">
                                         @error('inp_inv_card')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -124,6 +125,22 @@
                                 </div>
                                 <div class="form-group row showcase_row_area">
                                     <div class="col-md-2 showcase_text_area">
+                                        <label for="inp_pemakai">Pemakai</label>
+                                    </div>
+                                    <div class="col-md-8 showcase_content_area">
+                                        <input type="text"
+                                            class="form-control @error('inp_pemakai') is-invalid @enderror" id="inp_pemakai"
+                                            name="inp_pemakai" placeholder="Masukan data pemakai"
+                                            value="{{ old('inp_pemakai') }}">
+                                        @error('inp_pemakai')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row showcase_row_area">
+                                    <div class="col-md-2 showcase_text_area">
                                         <label for="inp_kondisi">Kondisi *</label>
                                     </div>
                                     <div class="col-md-8 showcase_content_area">
@@ -132,6 +149,8 @@
                                             <option selected="selected">-- Pilih --</option>
                                             <option value="Baik" @selected(old('inp_kondisi') == 'Baik')>Baik</option>
                                             <option value="Rusak" @selected(old('inp_kondisi') == 'Rusak')>Rusak</option>
+                                            <option value="Dijual" @selected(old('inp_kondisi') == 'Dijual')>Dijual</option>
+                                            <option value="Hilang" @selected(old('inp_kondisi') == 'Hilang')>Hilang</option>
                                         </select>
                                         @error('inp_kondisi')
                                             <div class="invalid-feedback">
@@ -140,7 +159,6 @@
                                         @enderror
                                     </div>
                                 </div>
-
                                 <div class="form-group row showcase_row_area">
                                     <div class="col-md-2 showcase_text_area">
                                     </div>

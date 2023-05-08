@@ -45,6 +45,7 @@
                                         <th>Project</th>
                                         <th>Harga</th>
                                         <th>Lokasi</th>
+                                        <th>Pemakai</th>
                                         <th>Kondisi</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -59,6 +60,7 @@
                                             <td>{{ $item->projects->name }}</td>
                                             <td>{{ Helper::formatRupiah($item->price) }}</td>
                                             <td>{{ $item->location }}</td>
+                                            <td>{{ $item->user }}</td>
                                             <td>
                                                 @if ($item->condition == 'Baik')
                                                     <label class="badge badge-success">{{ $item->condition }}</label>
