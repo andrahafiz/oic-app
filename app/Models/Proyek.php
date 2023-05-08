@@ -18,4 +18,9 @@ class Proyek extends Model
         'loan_date',
         'buy_date'
     ];
+
+    public function projects()
+    {
+        return $this->belongsTo(Project::class, 'project', 'id');
+    }
 }

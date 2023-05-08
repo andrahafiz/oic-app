@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KendaraanController;
+use App\Http\Controllers\ProyekController;
 use App\Http\Controllers\TanahController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,5 +45,19 @@ Route::controller(KendaraanController::class)->group(
         Route::delete('/kendaraan/{kendaraan}',  'destroy')->name('kendaraan.destroy');
         Route::get('/kendaraan/{kendaraan}/edit',  'edit')->name('kendaraan.edit');
         Route::put('/kendaraan/{kendaraan}/edit',  'update')->name('kendaraan.update');
+    }
+);
+
+
+Route::controller(ProyekController::class)->group(
+    function () {
+        Route::get('/project/{type_project:slug}',  'index')->name('project.index');
+        Route::get('/project/{type_project:slug}/tambah',  'create')->name('project.create');
+        Route::get('/project/{type_project:slug}/edit/{proyek}',  'edit')->name('project.edit');
+        Route::post('/project/{type_project:slug}/store',  'store')->name('project.store');
+        Route::delete('/project/{type_project:slug}/destroy/{proyek}',  'destroy')->name('project.destroy');
+        Route::put('/project/{type_project:slug}/update/{proyek}',  'update')->name('project.update');
+        // Route::delete('/project/{project}',  'destroy')->name('project.destroy');
+        // Route::put('/project/{project}/edit',  'update')->name('project.update');
     }
 );

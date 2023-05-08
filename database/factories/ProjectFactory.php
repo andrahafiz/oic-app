@@ -20,7 +20,7 @@ class ProjectFactory extends Factory
     public function definition()
     {
         $project = ['US_EMBYSY', 'Lestari', 'SOS', 'LU SH', 'TFCH', 'Arcus', 'Wish Indo'];
-        $selected = $this->faker->unique()->randomElement($project);
+        $selected = $this->faker->randomElement($project);
         return [
             //
             'name' => $selected,

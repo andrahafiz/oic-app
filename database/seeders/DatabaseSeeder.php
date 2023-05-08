@@ -16,15 +16,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        DB::table('projects')->insert([
-            ['name' => 'US-EMBASSY'],
-            ['name' => 'LESTARI'],
-            ['name' => 'SOS'],
-            ['name' => 'LUSH'],
-            ['name' => 'TFCA'],
-            ['name' => 'ARCUS'],
-            ['name' => 'LUSH INDO'],
-            ['name' => 'BPC'],
-        ]);
+        \App\Models\Project::factory(5)->create();
+        // DB::table('projects')->insert([
+        //     ['name' => 'US-EMBASSY'],
+        //     ['name' => 'LESTARI'],
+        //     ['name' => 'SOS'],
+        //     ['name' => 'LUSH'],
+        //     ['name' => 'TFCA'],
+        //     ['name' => 'ARCUS'],
+        //     ['name' => 'LUSH INDO'],
+        //     ['name' => 'BPC'],
+        // ]);
     }
 }

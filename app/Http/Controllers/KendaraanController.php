@@ -55,7 +55,7 @@ class KendaraanController extends Controller
             'user' => $input['inp_pemakai'],
 
         ]);
-        return redirect()->route('kendaraan.index')->with('success', "Data produk berhasil ditambahkan");;
+        return redirect()->route('kendaraan.index')->with('success', "Data produk berhasil ditambahkan");
     }
 
     /**
