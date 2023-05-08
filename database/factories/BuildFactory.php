@@ -19,7 +19,7 @@ class BuildFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'inventory_card' => $this->faker->word(),
-            'project' => 'PROJECT ' . $this->faker->name(),
+            'project' => 'BUILD ' . $this->faker->name(),
             'price' => $this->faker->randomNumber(),
             'location' => $this->faker->word(),
             'loan_date' => $this->faker->dateTimeBetween('-1 month', '+1 month'),
