@@ -62,7 +62,13 @@
                 <i class="mdi mdi-chart-donut link-icon"></i>
             </a>
         </li>
-        <li class="nav-category-divider">DOCS</li>
+        <li class="nav-category-divider">Kategori</li>
+        <li>
+            <a href="{{ route('kategori_project.index') }}">
+                <span class="link-title">Kategori Project</span>
+                <i class="mdi mdi-asterisk link-icon"></i>
+            </a>
+        </li>
         <li>
             <a href="../docs/docs.html">
                 <span class="link-title">Documentation</span>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KendaraanController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProyekController;
 use App\Http\Controllers\TanahController;
 use Illuminate\Support\Facades\Route;
@@ -57,7 +58,15 @@ Route::controller(ProyekController::class)->group(
         Route::post('/project/{type_project:slug}/store',  'store')->name('project.store');
         Route::delete('/project/{type_project:slug}/destroy/{proyek}',  'destroy')->name('project.destroy');
         Route::put('/project/{type_project:slug}/update/{proyek}',  'update')->name('project.update');
-        // Route::delete('/project/{project}',  'destroy')->name('project.destroy');
-        // Route::put('/project/{project}/edit',  'update')->name('project.update');
+    }
+);
+
+Route::controller(ProjectController::class)->group(
+    function () {
+        Route::get('/kategori_project',  'index')->name('kategori_project.index');
+        Route::get('/kategori_project/tambah',  'create')->name('kategori_project.create');
+        Route::post('/kategori_project/store',  'store')->name('kategori_project.store');
+        Route::delete('/kategori_project/{project}',  'destroy')->name('kategori_project.destroy');
+        // Route::put('/project/{type_project:slug}/update/{proyek}',  'update')->name('project.update');
     }
 );

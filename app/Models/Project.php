@@ -15,8 +15,24 @@ class Project extends Model
         'name', 'slug'
     ];
 
+
     public function proyeks()
     {
         return $this->hasMany(Proyek::class, 'project', 'id');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($project) {
+            $relationMethods = ['proyeks'];
+
+            foreach ($relationMethods as $relationMethod) {
+                if ($project->$relationMethod()->count() > 0) {
+                    return false;
+                }
+            }
+        });
     }
 }

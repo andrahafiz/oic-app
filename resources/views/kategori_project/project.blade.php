@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'Project ' . $type_project->name)
+@section('title', 'Kategori Project')
 @push('style')
     <style>
         .float-end {
@@ -24,10 +24,22 @@
                         </div>
                     </div>
                 @endif
+                @if (session()->has('error'))
+                    <div class="alert alert-info alert-dismissible alert-has-icon show fade">
+                        <div class="alert-icon"><i class="far fa-circle-check"></i></div>
+                        <div class="alert-body">
+                            <div class="alert-title">Peringatan !!!</div>
+                            <button class="close" data-dismiss="alert">
+                                <span>&times;</span>
+                            </button>
+                            {{ session('error') }}!
+                        </div>
+                    </div>
+                @endif
                 <div class="grid">
                     <div class="grid-header">
-                        <p class="d-inline start">Project <strong>{{ $type_project->name }}</strong></p>
-                        <a href="{{ route('project.create', $type_project->slug) }}">
+                        <p class="d-inline start">Kategori Project</p>
+                        <a href="{{ route('kategori_project.create') }}">
                             <button type="button" class="d-inline btn btn-outline-success mb-3 float-end">
                                 Add Document
                             </button>
@@ -39,53 +51,20 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Tanggal Pembelian</th>
-                                        <th>Inventory Card</th>
                                         <th>Nama</th>
-                                        <th>Project</th>
-                                        <th>Harga</th>
-                                        <th>Lokasi</th>
-                                        <th>Kondisi</th>
-                                        <th>Tanggal Peminjaman</th>
-                                        <th>Pemakai</th>
-                                        <th>Deskripsi</th>
+                                        <th>Slug</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody class="text-center">
-                                    @if (count($projects) === 0)
-                                        <tr>
-                                            <td colspan="12"><strong>Data tidak ditemukan</strong></td>
-                                        </tr>
-                                    @endif
+                                <tbody>
                                     @foreach ($projects as $item)
                                         <tr>
                                             <td>{{ $projects->firstItem() + $loop->index }}</td>
-                                            <td>{{ $item->buy_date?->isoFormat('dddd, D MMMM Y') ?? '-' }}</td>
-                                            <td>{{ $item->inventory_card ?? '-' }}</td>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->projects->name }}</td>
-                                            <td>{{ Helper::formatRupiah($item->price) }}</td>
-                                            <td>{{ $item->location }}</td>
+                                            <td>{{ $item->slug }}</td>
                                             <td>
-                                                @if ($item->condition == 'Baik')
-                                                    <label class="badge badge-success">{{ $item->condition }}</label>
-                                                @elseif($item->condition == 'Rusak')
-                                                    <label class="badge badge-danger">{{ $item->condition }}</label>
-                                                @else
-                                                    <label class="badge badge-info">{{ $item->condition }}</label>
-                                                @endif
-                                            </td>
-                                            <td>{{ $item->loan_date?->isoFormat('dddd, D MMMM Y') ?? '-' }}</td>
-                                            <td>{{ $item->user ?? '-' }}</td>
-                                            <td>{{ $item->description ?? '-' }}</td>
-                                            <td>
-                                                <a href="{{ route('project.edit', [$type_project->slug, $item->id]) }}">
-                                                    <button class="btn btn-primary btn-xs has-icon"><i
-                                                            class="mdi mdi-pencil mr-0"></i></button>
-                                                </a>
                                                 <form method="POST"
-                                                    action="{{ route('project.destroy', [$type_project->slug, $item->id]) }}"
+                                                    action="{{ route('kategori_project.destroy', $item->id) }}"
                                                     class="d-inline">
                                                     @csrf
                                                     {{ method_field('delete') }}
