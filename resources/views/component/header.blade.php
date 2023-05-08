@@ -9,18 +9,14 @@
      </div>
      <div class="t-header-content-wrapper">
          <div class="t-header-content">
-             <button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none">
-                 <i class="mdi mdi-menu"></i>
-             </button>
-             <form action="#" class="t-header-search-box">
-                 <div class="input-group">
-                     <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search"
-                         autocomplete="off">
-                     <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
-                 </div>
-             </form>
              <div class="t-header-content-wrapper">
-                 <a href="" btn btn-primary>Log - Out</a>
+                 <form action="{{ route('logout') }}" id="logout" method="POST">
+                     @csrf
+                     <a type="submit" class="btn btn-info text-white" role="button"
+                         onclick="document.getElementById('logout').submit();">
+                         Log - Out
+                     </a>
+                 </form>
              </div>
          </div>
      </div>

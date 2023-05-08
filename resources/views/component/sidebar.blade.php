@@ -6,8 +6,7 @@
                 alt="profle image">
         </div>
         <div class="info-wrapper">
-            <p class="user-name">Mr Faisal</p>
-            <h6 class="display-income">Finance Direktur</h6>
+            <p class="user-name">{{ Auth::user()->name }}</p>
         </div>
     </div>
     <ul class="navigation-menu">
