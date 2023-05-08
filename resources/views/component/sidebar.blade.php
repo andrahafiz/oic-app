@@ -36,27 +36,12 @@
                 <i class="mdi mdi-bullseye link-icon"></i>
             </a>
             <ul class="collapse navigation-submenu" id="ui-elements">
-                <li>
-                    <a href="pages/ui-components/buttons.html">Us-Embassy</a>
-                </li>
-                <li>
-                    <a href="pages/ui-components/buttons.html">Lestari</a>
-                </li>
-                <li>
-                    <a href="pages/ui-components/buttons.html">SOS</a>
-                </li>
-                <li>
-                    <a href="pages/ui-components/tables.html">LU SH</a>
-                </li>
-                <li>
-                    <a href="pages/ui-components/typography.html">TFCA</a>
-                </li>
-                <li>
-                    <a href="pages/ui-components/buttons.html">Arcus</a>
-                </li>
-                <li>
-                    <a href="pages/ui-components/buttons.html">Wish Indo</a>
-                </li>
+                @foreach ($project as $item)
+                    <li>
+                        <a href="{{ route('project.index', $item->slug) }}">{{ $item->name }}</a>
+                    </li>
+                @endforeach
+
             </ul>
         </li>
         <li>
