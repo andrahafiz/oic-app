@@ -2,6 +2,7 @@
 
 @section('title', 'build')
 @section('main')
+<div class="page-content-wrapper-inner">
     <div class="content-viewport">
         <div class="row">
             @if (session()->has('error'))
@@ -213,5 +214,6 @@
     <!-- partial -->
     </div>
     <!-- page content ends -->
+    </div>
     </div>
 @endsection

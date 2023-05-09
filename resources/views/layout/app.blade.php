@@ -30,9 +30,8 @@
         <!-- partial -->
         <!-- CONTENT -->
         <div class="page-content-wrapper">
-            <div class="page-content-wrapper-inner">
-                @yield('main')
-            </div>
+
+            @yield('main')
         </div>
         <!-- END CONTENT -->
     </div>
