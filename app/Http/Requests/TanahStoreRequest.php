@@ -32,6 +32,7 @@ class TanahStoreRequest extends FormRequest
             'inp_lokasi'        => ['required', 'string'],
             'inp_kondisi'       => ['required', 'in:Baik,Rusak'],
             'inp_tglpembelian'  => ['sometimes', 'nullable', 'date'],
+            'inp_tglpeminjaman' => ['sometimes', 'nullable', 'date'],
         ];
     }
 }

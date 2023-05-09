@@ -24,6 +24,7 @@ class TanahFactory extends Factory
             'price' => $this->faker->randomNumber(),
             'location' => $this->faker->word(),
             'date_buy' => $this->faker->dateTimeBetween('-1 month', '+1 month'),
+            'loan_date' => $this->faker->dateTimeBetween('-1 month', '+1 month'),
             'condition' => $this->faker->randomElement(['Baik', 'Rusak']),
             'user' => $this->faker->name()
         ];

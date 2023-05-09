@@ -52,7 +52,7 @@
                                             <input type="date"
                                                 class="form-control  @error('inp_tglpembelian') is-invalid @enderror"
                                                 id="inp_tglpembelian" name="inp_tglpembelian"
-                                                value="{{ old('inp_tglpembelian') ?? $build->date_buy?->format('Y-m-d') }}">
+                                                value="{{ old('inp_tglpembelian') ?? $build->buy_date?->format('Y-m-d') }}">
                                             @error('inp_tglpembelian')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}

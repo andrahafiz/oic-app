@@ -28,7 +28,7 @@
                                     @csrf
                                     <div class="form-group row showcase_row_area">
                                         <div class="col-md-2 showcase_text_area">
-                                            <label for="inp_name">Nama Project {{ $type_project->name }} *</label>
+                                            <label for="inp_name">Nama Project *</label>
                                         </div>
                                         <div class="col-md-8 showcase_content_area">
                                             <input type="text"

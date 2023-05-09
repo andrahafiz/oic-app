@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('price')->default(0)->nullable();;
             $table->string('location');
             $table->timestamp('date_buy')->nullable();
+            $table->timestamp('loan_date')->nullable();
             $table->string('user')->nullable();
             $table->enum('condition', ['Baik', 'Rusak']);
             $table->timestamps();

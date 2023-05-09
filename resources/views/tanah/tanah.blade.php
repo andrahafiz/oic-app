@@ -45,6 +45,7 @@
                                         <th>Project</th>
                                         <th>Harga</th>
                                         <th>Lokasi</th>
+                                        <th>Tanggal Peminjaman</th>
                                         <th>Pemakai</th>
                                         <th>Kondisi</th>
                                         <th>Aksi</th>
@@ -60,6 +61,7 @@
                                             <td>{{ $item->projects->name }}</td>
                                             <td>{{ Helper::formatRupiah($item->price) }}</td>
                                             <td>{{ $item->location }}</td>
+                                            <td>{{ $item->date_buy?->isoFormat('dddd, D MMMM Y') ?? '-' }}</td>
                                             <td>{{ $item->user }}</td>
                                             <td>
                                                 @if ($item->condition == 'Baik')

@@ -59,7 +59,7 @@
                                             <td>{{ $item->buy_date?->isoFormat('dddd, D MMMM Y') ?? '-' }}</td>
                                             <td>{{ $item->inventory_card ?? '-' }}</td>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->project }}</td>
+                                            <td>{{ $item->projects->name }}</td>
                                             <td>{{ Helper::formatRupiah($item->price) }}</td>
                                             <td>{{ $item->location }}</td>
                                             <td>
@@ -75,11 +75,11 @@
                                             <td>{{ $item->user ?? '-' }}</td>
                                             <td>{{ $item->description ?? '-' }}</td>
                                             <td>
-                                                <a href="{{ route('kendaraan.edit', $item->id) }}">
+                                                <a href="{{ route('build.edit', $item->id) }}">
                                                     <button class="btn btn-primary btn-xs has-icon"><i
                                                             class="mdi mdi-pencil mr-0"></i></button>
                                                 </a>
-                                                <form method="POST" action="{{ route('kendaraan.destroy', $item->id) }}"
+                                                <form method="POST" action="{{ route('build.destroy', $item->id) }}"
                                                     class="d-inline">
                                                     @csrf
                                                     {{ method_field('delete') }}
