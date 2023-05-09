@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\KendaraanStoreRequest;
-use App\Http\Requests\KendaraanUpdateRequest;
+use App\Models\Project;
 use App\Models\Kendaraan;
 use Illuminate\Http\Request;
+use App\Http\Requests\KendaraanStoreRequest;
+use App\Http\Requests\KendaraanUpdateRequest;
 
 class KendaraanController extends Controller
 {
@@ -27,8 +28,8 @@ class KendaraanController extends Controller
      */
     public function create()
     {
-        //
-        return view('kendaraan.addkendaraan');
+        $projects = Project::get();
+        return view('kendaraan.addkendaraan', compact('projects'));
     }
 
     /**
@@ -40,23 +41,26 @@ class KendaraanController extends Controller
     public function store(KendaraanStoreRequest $request)
     {
         $input = $request->safe([
-            'inp_name', 'inp_inv_card', 'inp_project', 'inp_lokasi', 'inp_harga', 'inp_deskripsi', 'inp_kondisi', 'inp_tglpeminjaman', 'inp_tglpembelian', 'inp_pemakai'
+            'inp_name', 'inp_inv_card', 'inp_project', 'inp_lokasi', 'inp_harga', 'inp_residu', 'inp_penyusutan', 'inp_ekonomis', 'inp_deskripsi', 'inp_kondisi', 'inp_tglpeminjaman', 'inp_tglpembelian', 'inp_pemakai'
         ]);
         $create = Kendaraan::create([
             'name' => $input['inp_name'],
             'project' => $input['inp_project'],
             'inventory_card' => $input['inp_inv_card'],
             'location' => $input['inp_lokasi'],
-            'price' => $input['inp_harga'] ?? 0,
+            'price' => (int) $input['inp_harga'] ?? 0,
             'condition' => $input['inp_kondisi'],
             'description' => $input['inp_deskripsi'],
             'loan_date' => $input['inp_tglpeminjaman'],
             'buy_date' => $input['inp_tglpembelian'],
             'user' => $input['inp_pemakai'],
-
+            'residu_value' => (int) $input['inp_residu'],
+            'economic_value' => (int) $input['inp_ekonomis'],
+            'depreciation_value' => (int) $input['inp_penyusutan'],
         ]);
         return redirect()->route('kendaraan.index')->with('success', "Data produk berhasil ditambahkan");
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -66,7 +70,8 @@ class KendaraanController extends Controller
      */
     public function edit(Kendaraan $kendaraan)
     {
-        return view('kendaraan.editkendaraan', compact('kendaraan'));
+        $projects = Project::get();
+        return view('kendaraan.editkendaraan', compact('kendaraan', 'projects'));
     }
 
     /**
@@ -79,20 +84,22 @@ class KendaraanController extends Controller
     public function update(KendaraanUpdateRequest $request, Kendaraan $kendaraan)
     {
         $input = $request->safe([
-            'inp_name', 'inp_inv_card', 'inp_project', 'inp_lokasi', 'inp_harga', 'inp_deskripsi', 'inp_kondisi', 'inp_tglpeminjaman', 'inp_tglpembelian', 'inp_pemakai'
+            'inp_name', 'inp_inv_card', 'inp_project', 'inp_lokasi', 'inp_harga', 'inp_residu', 'inp_penyusutan', 'inp_ekonomis', 'inp_deskripsi', 'inp_kondisi', 'inp_tglpeminjaman', 'inp_tglpembelian', 'inp_pemakai'
         ]);
         $update = $kendaraan->update([
             'name' => $input['inp_name'],
             'project' => $input['inp_project'],
             'inventory_card' => $input['inp_inv_card'],
             'location' => $input['inp_lokasi'],
-            'price' => $input['inp_harga'] ?? 0,
+            'price' => (int) $input['inp_harga'] ?? 0,
             'condition' => $input['inp_kondisi'],
             'description' => $input['inp_deskripsi'],
             'loan_date' => $input['inp_tglpeminjaman'],
             'buy_date' => $input['inp_tglpembelian'],
             'user' => $input['inp_pemakai'],
-
+            'residu_value' => (int) $input['inp_residu'],
+            'economic_value' => (int) $input['inp_ekonomis'],
+            'depreciation_value' => (int) $input['inp_penyusutan'],
         ]);
         if (!$update) {
             return redirect()->back()->with('error', "Terjadi kesalahan pada sistem");

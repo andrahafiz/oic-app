@@ -62,10 +62,15 @@
                                             <label for="inp_project">Project *</label>
                                         </div>
                                         <div class="col-md-8 showcase_content_area">
-                                            <input type="text"
-                                                class="form-control  @error('inp_project') is-invalid @enderror"
-                                                id="inp_project" name="inp_project" placeholder="Masukan data project"
-                                                value="{{ old('inp_project') }}">
+                                            <select class="custom-select @error('inp_project') is-invalid @enderror"
+                                                name="inp_project">
+                                                <option value="">-- Pilih Project --</option>
+                                                @foreach ($projects as $project)
+                                                    <option value="{{ $project->id }}" @selected(old('inp_project') == $project->id)>
+                                                        {{ $project->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                             @error('inp_project')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -100,6 +105,54 @@
                                                 name="inp_harga" placeholder="Masukan data harga"
                                                 value="{{ old('inp_harga') }}">
                                             @error('inp_harga')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row showcase_row_area">
+                                        <div class="col-md-2 showcase_text_area">
+                                            <label for="inp_residu">Nilai Residu</label>
+                                        </div>
+                                        <div class="col-md-8 showcase_content_area">
+                                            <input type="text"
+                                                class="form-control @error('inp_residu') is-invalid @enderror"
+                                                id="inp_residu" name="inp_residu" readonly placeholder="Masukan data harga"
+                                                value="{{ old('inp_residu') }}">
+                                            @error('inp_residu')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row showcase_row_area">
+                                        <div class="col-md-2 showcase_text_area">
+                                            <label for="inp_ekonomis">Nilai Ekonomis</label>
+                                        </div>
+                                        <div class="col-md-8 showcase_content_area">
+                                            <input type="text"
+                                                class="form-control @error('inp_ekonomis') is-invalid @enderror"
+                                                id="inp_ekonomis" name="inp_ekonomis" readonly
+                                                placeholder="Masukan data harga" value="{{ old('inp_ekonomis') }}">
+                                            @error('inp_ekonomis')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row showcase_row_area">
+                                        <div class="col-md-2 showcase_text_area">
+                                            <label for="inp_penyusutan">Nilai Penyusutan</label>
+                                        </div>
+                                        <div class="col-md-8 showcase_content_area">
+                                            <input type="text"
+                                                class="form-control @error('inp_penyusutan') is-invalid @enderror"
+                                                id="inp_penyusutan" name="inp_penyusutan" readonly
+                                                placeholder="Masukan data harga" value="{{ old('inp_penyusutan') }}">
+                                            @error('inp_penyusutan')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
@@ -218,3 +271,63 @@
     </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $("#inp_harga").keyup(function(event) {
+            var harga = $(this).val();
+
+            var residu = $("#inp_residu").val(nilaiResidu(harga)).val();
+            var ekonomis = $("#inp_ekonomis").val(nilaiEkonomis(harga, residu)).val();
+            var penyusutan = $("#inp_penyusutan").val(nilaiPenyusutan(harga, residu)).val();
+            console.log($(this).val() == '');
+            if (harga === '') {
+                $("#inp_residu").val(null);
+                $("#inp_ekonomis").val(null);
+                $("#inp_penyusutan").val(null);
+            }
+        });
+        $("#inp_harga").focusout(function() {
+            var harga = $(this).val();
+            $("#inp_residu").val(residu(harga));
+        });
+
+        function nilaiResidu(harga) {
+            return harga * 10 / 100;
+        }
+
+        function nilaiEkonomis(harga, residu) {
+            return harga - residu;
+        }
+
+        function nilaiPenyusutan(harga, residu) {
+            return (harga - residu) / 5;
+        }
+
+        // var format = function(num) {
+        //     var str = num.toString().replace("", ""),
+        //         parts = false,
+        //         output = [],
+        //         i = 1,
+        //         formatted = null;
+        //     if (str.indexOf(".") > 0) {
+        //         parts = str.split(".");
+        //         str = parts[0];
+        //     }
+        //     str = str.split("").reverse();
+        //     for (var j = 0, len = str.length; j < len; j++) {
+        //         if (str[j] != ",") {
+        //             output.push(str[j]);
+        //             if (i % 3 == 0 && j < (len - 1)) {
+        //                 output.push(".");
+        //             }
+        //             i++;
+        //         }
+        //     }
+        //     formatted = output.reverse().join("");
+        //     return ("" + formatted + ((parts) ? "." + parts[1].substr(0, 2) : ""));
+        // };
+        // var input = 95000000000;
+        // var output = parseInt(input).toLocaleString();
+        // alert(output);
+    </script>
+@endpush

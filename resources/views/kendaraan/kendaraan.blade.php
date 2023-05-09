@@ -44,6 +44,9 @@
                                         <th>Nama</th>
                                         <th>Project</th>
                                         <th>Harga</th>
+                                        <th>Nilai Residu</th>
+                                        <th>Nilai Ekonomis</th>
+                                        <th>Nilai Penyusutan</th>
                                         <th>Lokasi</th>
                                         <th>Kondisi</th>
                                         <th>Tanggal Peminjaman</th>
@@ -59,8 +62,11 @@
                                             <td>{{ $item->buy_date?->isoFormat('dddd, D MMMM Y') ?? '-' }}</td>
                                             <td>{{ $item->inventory_card ?? '-' }}</td>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->project }}</td>
+                                            <td>{{ $item->projects->name }}</td>
                                             <td>{{ Helper::formatRupiah($item->price) }}</td>
+                                            <td>{{ Helper::formatRupiah($item->residu_value) }}</td>
+                                            <td>{{ Helper::formatRupiah($item->economic_value) }}</td>
+                                            <td>{{ Helper::formatRupiah($item->depreciation_value) }}</td>
                                             <td>{{ $item->location }}</td>
                                             <td>
                                                 @if ($item->condition == 'Baik')
