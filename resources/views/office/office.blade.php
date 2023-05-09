@@ -44,6 +44,8 @@
                                         <th>Nama</th>
                                         <th>Project</th>
                                         <th>Harga</th>
+                                        <th>Julah (Satuan)</th>
+                                        <th>Total</th>
                                         <th>Lokasi</th>
                                         <th>Kondisi</th>
                                         <th>Tanggal Peminjaman</th>
@@ -59,8 +61,10 @@
                                             <td>{{ $item->buy_date?->isoFormat('dddd, D MMMM Y') ?? '-' }}</td>
                                             <td>{{ $item->inventory_card ?? '-' }}</td>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->project }}</td>
+                                            <td>{{ $item->projects->name }}</td>
                                             <td>{{ Helper::formatRupiah($item->price) }}</td>
+                                            <td>{{ $item->amount . " {$item->unit}" }}</td>
+                                            <td>{{ Helper::formatRupiah($item->total) }}</td>
                                             <td>{{ $item->location }}</td>
                                             <td>
                                                 @if ($item->condition == 'Baik')
@@ -75,11 +79,11 @@
                                             <td>{{ $item->user ?? '-' }}</td>
                                             <td>{{ $item->description ?? '-' }}</td>
                                             <td>
-                                                <a href="{{ route('kendaraan.edit', $item->id) }}">
+                                                <a href="{{ route('office.edit', $item->id) }}">
                                                     <button class="btn btn-primary btn-xs has-icon"><i
                                                             class="mdi mdi-pencil mr-0"></i></button>
                                                 </a>
-                                                <form method="POST" action="{{ route('kendaraan.destroy', $item->id) }}"
+                                                <form method="POST" action="{{ route('office.destroy', $item->id) }}"
                                                     class="d-inline">
                                                     @csrf
                                                     {{ method_field('delete') }}

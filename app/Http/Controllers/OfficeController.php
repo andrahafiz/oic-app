@@ -45,6 +45,10 @@ class OfficeController extends Controller
         $input = $request->safe([
             'inp_name', 'inp_inv_card', 'inp_project', 'inp_lokasi', 'inp_harga', 'inp_deskripsi', 'inp_kondisi', 'inp_tglpeminjaman', 'inp_tglpembelian', 'inp_pemakai', 'inp_total', 'inp_satuan', 'inp_jumlah'
         ]);
+        if (isset($input['inp_total']))
+            if ($input['inp_total'] === $input['inp_jumlah'] * $input['inp_harga']) {
+                return redirect()->back()->withInput()->with('error', "Terjadi kesalahan pada sistem");
+            }
         $create = Office::create([
             'name' => $input['inp_name'],
             'project' => $input['inp_project'],
@@ -58,8 +62,7 @@ class OfficeController extends Controller
             'user' => $input['inp_pemakai'],
             'amount' => $input['inp_jumlah'],
             'unit' => $input['inp_satuan'],
-            'total' => $input['inp_total'] === $input['inp_jumlah'] * $input['inp_harga'],
-
+            'total' => $input['inp_jumlah'] * $input['inp_harga']
         ]);
         return redirect()->route('office.index')->with('success', "Data produk berhasil ditambahkan");
     }
@@ -72,7 +75,8 @@ class OfficeController extends Controller
      */
     public function edit(Office $office)
     {
-        return view('office.editoffice', compact('office'));
+        $projects = Project::get();
+        return view('office.editoffice', compact('office', 'projects'));
     }
 
     /**
@@ -85,8 +89,12 @@ class OfficeController extends Controller
     public function update(OfficeUpdateRequest $request, Office $office)
     {
         $input = $request->safe([
-            'inp_name', 'inp_inv_card', 'inp_project', 'inp_lokasi', 'inp_harga', 'inp_deskripsi', 'inp_kondisi', 'inp_tglpeminjaman', 'inp_tglpembelian', 'inp_pemakai'
+            'inp_name', 'inp_inv_card', 'inp_project', 'inp_lokasi', 'inp_harga', 'inp_deskripsi', 'inp_kondisi', 'inp_tglpeminjaman', 'inp_tglpembelian', 'inp_pemakai', 'inp_total', 'inp_satuan', 'inp_jumlah'
         ]);
+        if (isset($input['inp_total']))
+            if ($input['inp_total'] === $input['inp_jumlah'] * $input['inp_harga']) {
+                return redirect()->back()->withInput()->with('error', "Terjadi kesalahan pada sistem");
+            }
         $update = $office->update([
             'name' => $input['inp_name'],
             'project' => $input['inp_project'],
@@ -98,7 +106,9 @@ class OfficeController extends Controller
             'loan_date' => $input['inp_tglpeminjaman'],
             'buy_date' => $input['inp_tglpembelian'],
             'user' => $input['inp_pemakai'],
-
+            'amount' => $input['inp_jumlah'],
+            'unit' => $input['inp_satuan'],
+            'total' => $input['inp_jumlah'] * $input['inp_harga']
         ]);
         if (!$update) {
             return redirect()->back()->with('error', "Terjadi kesalahan pada sistem");
