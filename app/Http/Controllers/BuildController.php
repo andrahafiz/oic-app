@@ -58,7 +58,7 @@ class BuildController extends Controller
             'user' => $input['inp_pemakai'],
 
         ]);
-        return redirect()->route('build.index')->with('success', "Data produk berhasil ditambahkan");
+        return redirect()->route('build.index')->with('success', "Data bangunan berhasil ditambahkan");
     }
 
     /**
@@ -69,7 +69,8 @@ class BuildController extends Controller
      */
     public function edit(Build $build)
     {
-        return view('build.editbuild', compact('build'));
+        $projects = Project::get();
+        return view('build.editbuild', compact('build', 'projects'));
     }
 
     /**
@@ -101,7 +102,7 @@ class BuildController extends Controller
             return redirect()->back()->with('error', "Terjadi kesalahan pada sistem");
         }
 
-        return redirect()->route('build.index')->with('success', "Data build berhasil diubah");
+        return redirect()->route('build.index')->with('success', "Data bangunan berhasil diubah");
     }
 
     /**
@@ -113,6 +114,6 @@ class BuildController extends Controller
     public function destroy(Build $build)
     {
         $build->delete();
-        return redirect()->route('build.index')->with('success', "Data build berhasil dihapus");
+        return redirect()->route('build.index')->with('success', "Data bangunan berhasil dihapus");
     }
 }
