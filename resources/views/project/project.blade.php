@@ -40,8 +40,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Tanggal Pembelian</th>
-                                        <th>Inventory Card</th>
                                         <th>Nama</th>
+                                        <th>Inventory Card</th>
                                         <th>Project</th>
                                         <th>Harga</th>
                                         <th>Lokasi</th>
@@ -62,8 +62,8 @@
                                         <tr>
                                             <td>{{ $projects->firstItem() + $loop->index }}</td>
                                             <td>{{ $item->buy_date?->isoFormat('dddd, D MMMM Y') ?? '-' }}</td>
-                                            <td>{{ $item->inventory_card ?? '-' }}</td>
                                             <td>{{ $item->name }}</td>
+                                            <td>{{ $item->inventory_card ?? '-' }}</td>
                                             <td>{{ $item->projects->name }}</td>
                                             <td>{{ Helper::formatRupiah($item->price) }}</td>
                                             <td>{{ $item->location }}</td>
